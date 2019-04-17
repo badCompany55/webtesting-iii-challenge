@@ -2,6 +2,7 @@ import React from 'react';
 
 import Display from '../display/Display';
 import Controls from '../controls/Controls';
+import renderer from "react-test-renderer";
 
 class Dashboard extends React.Component {
   state = {

@@ -3,12 +3,18 @@ import React from "react";
 import { render, fireEvent, cleanup } from "react-testing-library";
 import Controls from "./Controls.js";
 import "jest-dom/extend-expect";
+import renderer from "react-test-renderer";
 
 afterEach(cleanup);
 
 describe("<Controls/>", () => {
   it("should render without crashing", () => {
     render(<Controls />);
+  });
+
+  it("Should match snapshot", () => {
+    const tree = renderer.create(<Controls />);
+    expect(tree.toJSON()).toMatchSnapshot();
   });
   it("should contain two buttons, toggle states", () => {
     const toggleClose = jest.fn();

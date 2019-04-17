@@ -3,12 +3,18 @@ import React from "react";
 import { render, cleanup } from "react-testing-library";
 import "jest-dom/extend-expect";
 import Display from "./Display.js";
+import renderer from "react-test-renderer";
 
 afterEach(cleanup);
 
 describe("<Display/>", () => {
   it("should render without crashing", () => {
     render(<Display />);
+  });
+
+  it("Should match snapshot", () => {
+    const tree = renderer.create(<Display />);
+    expect(tree.toJSON()).toMatchSnapshot();
   });
   it("should display open, unlocked", () => {
     const closed = false;

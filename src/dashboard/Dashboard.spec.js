@@ -2,12 +2,18 @@
 import React from "react";
 import { render, fireEvent, cleanup } from "react-testing-library";
 import Dashboard from "./Dashboard.js";
+import renderer from "react-test-renderer";
 
 afterEach(cleanup);
 
 describe("<Dashboard/>", () => {
   it("should render without crashing", () => {
     render(<Dashboard />);
+  });
+
+  it("Should match snapshot", () => {
+    const tree = renderer.create(<Dashboard />);
+    expect(tree.toJSON()).toMatchSnapshot();
   });
 
   it("should change button text on click", () => {
